@@ -1,3 +1,1 @@
-# cudasidequests
-# cudasidequests
-# cudasidequests
+# CUDA Side quests and exercises
