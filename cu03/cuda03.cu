@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "cuda_runtime.h"
 
-#define SIZE 1024 //define the size of the vectors
+#define SIZE 2048 //define the size of the vectors
 
 //CUDA kernel for vector addition
 __global__ void vectorAdd(int* A, int* B, int* C, int n) {
-	int i = threadIdx.x;
+	int i = threadIdx.x + blockIdx.x * blockDim.x;
 	C[i] = A[i] + B[i];
 }
 
@@ -35,7 +35,7 @@ int main()
 	cudaMemcpy(d_B, B, size, cudaMemcpyHostToDevice);
 
 	 //Step 5: Launch the Vector Add CUDA kernel
-	vectorAdd <<< 1, 1024 >>> (d_A, d_B, d_C, SIZE);
+	vectorAdd <<< 2, 1024 >>> (d_A, d_B, d_C, SIZE);
 
 	//Step 6. copy the result back to the host CPU+mem
 	cudaMemcpy(C, d_C, size, cudaMemcpyDeviceToHost);
