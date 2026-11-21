@@ -18,8 +18,8 @@ int main()
 	int size = SIZE * sizeof(int);
 
 	//Step 2: Allocate and initialise the hosts vectors.
-	A = (int*)malloco(size); random_ints(A, SIZE);
-	B = (int*)malloc(size); random_ints(B, SIZE);
+	A = (int*)malloc(size); 
+	B = (int*)malloc(size);
 	C = (int*)malloc(size);
 
 	//Step 3 allocate the device vectors
