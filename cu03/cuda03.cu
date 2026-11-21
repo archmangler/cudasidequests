@@ -2,7 +2,8 @@
 #include "cuda_runtime.h"
 
 //#define SIZE 2048 //define the size of the vectors
-#define SIZE 1024*432*1024 //define the size of the vectors ---> more than 400 000 000 elements
+//#define SIZE 1024*432*1024 //define the size of the vectors ---> more than 400 000 000 elements
+#define SIZE 1024*1024*1024 //define the size of the vectors ---> more than 400 000 000 elements
 
 //CUDA kernel for vector addition
 __global__ void vectorAdd(int* A, int* B, int* C, int n) {
@@ -15,7 +16,8 @@ int main()
 	//Step 1: allocate memory space
 	int* A, * B , * C; // Host vectors
 	int* d_A, * d_B , * d_C; // Host vectors
-	int size = SIZE * sizeof(int);
+	//int size = SIZE * sizeof(int);
+	size_t size = (size_t)SIZE * sizeof(int); //previous definition is too small
 
 	//Step 2: Allocate and initialise the hosts vectors.
 	A = (int*)malloc(size); 
