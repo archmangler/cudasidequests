@@ -3,7 +3,8 @@
 
 //#define SIZE 2048 //define the size of the vectors
 //#define SIZE 1024*432*1024 //define the size of the vectors ---> more than 400 000 000 elements
-#define SIZE 1024*1024*1024 //define the size of the vectors ---> more than 400 000 000 elements
+//#define SIZE 1024*1024*1024 //define the size of the vectors ---> more than 400 000 000 elements
+#define SIZE (128 * 1024 * 1024)  /* 128M ints, 512 MB each, 1.5 GB on device */
 
 //CUDA kernel for vector addition
 __global__ void vectorAdd(int* A, int* B, int* C, int n) {
